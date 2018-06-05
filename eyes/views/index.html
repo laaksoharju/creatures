@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EYES</title>
+	<link rel="stylesheet" type="text/css" href="/css/eyes.css">
+	<script src="/socket.io/socket.io.js" defer></script>
+	<script src="/vue/vue.js" defer></script>
+	<script src="/js/eyes.js" defer></script>
+</head>
+<body>
+	  <div id="dots">
+    <div id="eye1">
+        <div 
+          v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
+          &nbsp;'
+        </div>
+    </div>
+       <div id="eye2">
+        <div 
+          v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
+          &nbsp;'
+        </div>
+    </div>
+  </div>
+</body>
+</html>

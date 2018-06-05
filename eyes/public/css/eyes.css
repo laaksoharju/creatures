@@ -1,0 +1,36 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: black;
+	color: white;
+}
+
+#dots {
+	width:300px;
+	margin: 500px auto;
+}
+#eye1, #eye2 {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	background: white;
+	background-repeat: no-repeat;
+	width:80px;
+	height: 50px;
+	cursor: crosshair;
+	display: inline-block;
+	margin:0 10px;
+	border-radius:50px 60px;
+}
+
+#eye1 div, #eye2 div {
+	position: absolute;
+	background: black;
+	color: white;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+	-moz-user-select: none;
+	user-select: none;
+}

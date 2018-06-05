@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EYES</title>
+  <link rel="stylesheet" type="text/css" href="/css/eyes.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/js/mover.js" defer></script>
+</head>
+<body>
+  <div class="view-box">
+    <div id="eye1" v-on:click="move" v-on:mousemove="move" v-on:mousedown="pressed" v-on:mouseup="released">
+        <div v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
+          &nbsp;'
+        </div>
+    </div>
+  </div>
+</body>
+</html>
