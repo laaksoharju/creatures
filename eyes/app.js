@@ -25,6 +25,13 @@ app.get('/mover', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/mover.html'));
 });
 
+app.get('/colors', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/colors.html'));
+});
+app.get('/cui', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/CUI.html'));
+});
+
 
 
 io.on('connection', function (socket) {
