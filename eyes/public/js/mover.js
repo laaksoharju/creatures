@@ -12,17 +12,16 @@ var vm = new Vue({
     turned: ''
   },
   created: function () {
-    socket.on('turned:left', function () {
-      this.turned = "LEFT";
-    }.bind(this));
-    socket.on('turned:right', function () {
-      this.turned = "RIGHT";
-    }.bind(this));
-    socket.on('drove:forward', function () {
-      this.turned = "FORWARD";
-    }.bind(this));
-    socket.on('drove:backward', function () {
-      this.turned = "BACKWARD";
+    socket.on('moved:motors', function (motors) {
+      const {left, right} = motors;
+      if (left && !right)
+        this.turned = "LEFT";
+      if (left && right)
+        this.turned = "FORWARD";
+      if (!left && right)
+        this.turned = "RIGHT";
+      if (!left && !right)
+        this.turned = "BACKWARD";
     }.bind(this));
   },
   methods: {
@@ -42,16 +41,16 @@ var vm = new Vue({
         }
     },
     turnLeft: function () {
-      socket.emit('turn:left');
+      socket.emit('move:motors', {left: true, right: false});
     },
     turnRight: function () {
-      socket.emit('turn:right');
+      socket.emit('move:motors', {left: false, right: true});
     },
     driveForward: function () {
-      socket.emit('drive:forward');
+      socket.emit('move:motors', {left: true, right: true});
     },
     driveBackward: function () {
-      socket.emit('drive:backward');
+      socket.emit('move:motors', {left: false, right: false});
     },
   }
 });

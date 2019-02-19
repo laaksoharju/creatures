@@ -34,28 +34,32 @@ var beep = (function () {
         eyePos: {},
       },
       created: function () {
+        /************
+        HERE YOU CAN WRITE NEW LISTENERS IF YOU NEED
+        ************/
         socket.on('move:eyes', function (data) {
           this.eyePos = data;
         }.bind(this));
-        socket.on('turn:left', function () {
-          beep(1, function() {
-            socket.emit('turned:left');
-          });
-        });
-        socket.on('turn:right', function () {
-          beep(2, function() {
-            socket.emit('turned:right');
-          });
-        });
-        socket.on('drive:forward', function () {
-          beep(3, function() {
-            socket.emit('drove:forward');
-          });
-        });
-        socket.on('drive:backward', function () {
-          beep(4, function() {
-            socket.emit('drove:backward');
-          });
+
+        // The motor commands are transferred to the Arduino by sound pulses
+        socket.on('move:motors', function (motors) {
+          const {left, right} = motors;
+          const letTheMoverKnowItHasBeenDone = function() {
+            socket.emit('moved:motors', motors)
+          }
+
+          if (left && !right) {
+            beep(1, letTheMoverKnowItHasBeenDone);
+          }
+          if (left && right) {
+            beep(3, letTheMoverKnowItHasBeenDone);
+          }
+          if (!left && right) {
+            beep(2, letTheMoverKnowItHasBeenDone);
+          }
+          if (!left && !right) {
+            beep(4, letTheMoverKnowItHasBeenDone);
+          }
         });
       }
     });
