@@ -29,10 +29,33 @@ app.get('/mover', function (req, res) {
 
 io.on('connection', function (socket) {
 
-  socket.on('move', function (eyes) {
-    io.emit('move', eyes);
+  socket.on('move:eyes', function (eyes) {
+    io.emit('move:eyes', eyes);
   });
-
+  socket.on('turn:left', function () {
+    io.emit('turn:left');
+  });
+  socket.on('turned:left', function () {
+    io.emit('turned:left');
+  });
+  socket.on('turn:right', function () {
+    io.emit('turn:right');
+  });
+  socket.on('turned:right', function () {
+    io.emit('turned:right');
+  });
+  socket.on('drive:forward', function () {
+    io.emit('drive:forward');
+  });
+  socket.on('drove:forward', function () {
+    io.emit('drove:forward');
+  });
+  socket.on('drive:backward', function () {
+    io.emit('drive:backward');
+  });
+  socket.on('drove:backward', function () {
+    io.emit('drove:backward');
+  });
 });
 
 var server = http.listen(app.get('port'), function () {

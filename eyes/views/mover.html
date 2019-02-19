@@ -10,12 +10,15 @@
   <script src="/js/mover.js" defer></script>
 </head>
 <body>
-  <div class="view-box">
-    <div id="eye1" v-on:click="move" v-on:mousemove="move" v-on:mousedown="pressed" v-on:mouseup="released">
+  <div id="app">
+    <div id="eye1" v-on:click="moveEyes" v-on:mousemove="moveEyes" v-on:mousedown="pressed" v-on:mouseup="released">
         <div v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
           &nbsp;'
         </div>
     </div>
+    <button @click="turnLeft">LEFT</button><button @click="turnRight">RIGHT</button>
+    <button @click="driveForward">FORWARD</button><button @click="driveBackward">BACKWARD</button>
+    LAST MOVE: {{turned}}
   </div>
 </body>
 </html>
