@@ -11,14 +11,31 @@
 </head>
 <body>
   <div id="app">
-    <div id="eye1" v-on:click="moveEyes" v-on:mousemove="moveEyes" v-on:mousedown="pressed" v-on:mouseup="released">
-        <div v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
-          &nbsp;'
-        </div>
+    <div class="remote-control">
+      <div id="eye1" v-on:click="moveEyes" 
+                     v-on:mousemove="moveEyes"
+                     v-on:mousedown="pressed"
+                     v-on:mouseup="released">
+          <div v-bind:style="{ left: eyePos.x + 'px', top: eyePos.y + 'px'}">
+            &nbsp;'
+          </div>
+      </div>
+      <div class="button-container">
+        <button @click="driveForward">FORWARD</button>
+      </div>
+      <div class="button-container">
+        <button @click="turnLeft">LEFT</button><button @click="turnRight">RIGHT</button>
+      </div>
+      <div class="button-container">
+        <button @click="driveBackward">BACKWARD</button>
+      </div>
+      <div class="button-container">
+        <button @click="driveServo">SERVO</button>
+      </div>
+      <div class="remote-feedback">
+        LAST MOVE: {{turned}}
+      </div>
     </div>
-    <button @click="turnLeft">LEFT</button><button @click="turnRight">RIGHT</button>
-    <button @click="driveForward">FORWARD</button><button @click="driveBackward">BACKWARD</button>
-    LAST MOVE: {{turned}}
   </div>
 </body>
 </html>

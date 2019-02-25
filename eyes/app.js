@@ -8,7 +8,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
- 
+var ip = require("ip");
+
 // Pick arbitrary port for server
 var port = 3000;
 app.set('port', (process.env.PORT || port));
@@ -39,12 +40,18 @@ These are not associated with any logical operations
   socket.on('move:motors', function (motors) {
     io.emit('move:motors', motors);
   });
-  // Just to confirm...
+  socket.on('move:servo', function (motors) {
+    io.emit('move:servo', motors);
+  });
+  // For now, this is just to confirm...
   socket.on('moved:motors', function (motors) {
     io.emit('moved:motors', motors);
+  });
+  socket.on('moved:servo', function () {
+    io.emit('moved:servo');
   });
 });
 
 var server = http.listen(app.get('port'), function () {
-  console.log('Server listening on port ' + app.get('port'));
+  console.log('Server listening on localhost:' + app.get('port') + ' and http://' + ip.address() + ':' + app.get('port'));
 });

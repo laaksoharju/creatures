@@ -23,6 +23,9 @@ var vm = new Vue({
       if (!left && !right)
         this.turned = "BACKWARD";
     }.bind(this));
+    socket.on('moved:servo', function () {
+      this.turned = "SERVO";
+    }.bind(this));
   },
   methods: {
     pressed: function () {
@@ -51,6 +54,9 @@ var vm = new Vue({
     },
     driveBackward: function () {
       socket.emit('move:motors', {left: false, right: false});
+    },
+    driveServo: function () {
+      socket.emit('move:servo');
     },
   }
 });

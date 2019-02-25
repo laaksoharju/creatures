@@ -45,7 +45,7 @@ var beep = (function () {
         socket.on('move:motors', function (motors) {
           const {left, right} = motors;
           const letTheMoverKnowItHasBeenDone = function() {
-            socket.emit('moved:motors', motors)
+            socket.emit('moved:motors', motors);
           }
 
           if (left && !right) {
@@ -60,6 +60,12 @@ var beep = (function () {
           if (!left && !right) {
             beep(4, letTheMoverKnowItHasBeenDone);
           }
+        });
+        socket.on('move:servo', function () {
+          const letTheMoverKnowItHasBeenDone = function() {
+            socket.emit('moved:servo');
+          }
+            beep(5, letTheMoverKnowItHasBeenDone);
         });
       }
     });

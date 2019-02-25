@@ -34,3 +34,16 @@ body {
 	-moz-user-select: none;
 	user-select: none;
 }
+
+.remote-control {
+	background: darkgray;
+	width: 10em;
+	margin: auto;
+	padding:1em;
+}
+
+.button-container {
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
